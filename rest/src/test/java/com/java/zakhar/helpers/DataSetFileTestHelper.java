@@ -6,8 +6,6 @@ import org.junit.jupiter.api.Assertions;
 import java.io.BufferedReader;
 import java.io.PrintWriter;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 public final class DataSetFileTestHelper {
     public static void assertFileContentIs(IIoService ioService, String fileName, String[] lines) throws Exception {
         int lineNo = 0;
@@ -20,11 +18,9 @@ public final class DataSetFileTestHelper {
     }
 
     public static void createFile(IIoService ioService, String fileName, String header, String[] lines) throws Exception {
-        try(PrintWriter writer = ioService.createFile(fileName))
-        {
+        try (PrintWriter writer = ioService.createFile(fileName)) {
             writer.println(header);
-            for(String line : lines)
-            {
+            for (String line : lines) {
                 writer.println(line);
             }
         }

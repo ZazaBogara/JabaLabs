@@ -5,7 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Setter;
 
-@Data @AllArgsConstructor
+@Data
+@AllArgsConstructor
 public class EquipmentProject {
     @Setter(AccessLevel.PRIVATE)
     private int ID;

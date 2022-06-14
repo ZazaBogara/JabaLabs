@@ -19,7 +19,7 @@ public class ServicesTestDataHelper {
     }
 
     private static void CreateEquipmentsTestFile(IIoService ioService, EquipmentsDataSet dataSet) throws Exception {
-        DataSetFileTestHelper.createFile(ioService, dataSet.getTodayFileName(), EquipmentItem.Header, new String[] {
+        DataSetFileTestHelper.createFile(ioService, dataSet.getTodayFileName(), EquipmentItem.Header, new String[]{
                 "1,Eq1,12,10",
                 "2,Eq2,50,2",
                 "3,Eq3,3,8"
@@ -27,7 +27,7 @@ public class ServicesTestDataHelper {
     }
 
     private static void CreateProjectsTestFile(IIoService ioService, ProjectsDataSet dataSet) throws Exception {
-        DataSetFileTestHelper.createFile(ioService, dataSet.getTodayFileName(), ProjectItem.Header, new String[] {
+        DataSetFileTestHelper.createFile(ioService, dataSet.getTodayFileName(), ProjectItem.Header, new String[]{
                 "1,Proj1",
                 "2,Proj2",
                 "3,Proj3"
@@ -35,7 +35,7 @@ public class ServicesTestDataHelper {
     }
 
     private static void CreateStudentsTestFile(IIoService ioService, StudentsDataSet dataSet) throws Exception {
-        DataSetFileTestHelper.createFile(ioService, dataSet.getTodayFileName(), StudentItem.Header, new String[] {
+        DataSetFileTestHelper.createFile(ioService, dataSet.getTodayFileName(), StudentItem.Header, new String[]{
                 "1,John,Smith,Course1",
                 "2,Kelly,Gordon,Course1",
                 "3,Zack,Anderson,Course2"
@@ -43,7 +43,7 @@ public class ServicesTestDataHelper {
     }
 
     private static void CreateProjectEquipmentsTestFile(IIoService ioService, ProjectEquipmentsDataSet dataSet) throws Exception {
-        DataSetFileTestHelper.createFile(ioService, dataSet.getTodayFileName(), ProjectEquipmentItem.Header, new String[] {
+        DataSetFileTestHelper.createFile(ioService, dataSet.getTodayFileName(), ProjectEquipmentItem.Header, new String[]{
                 "1,1,1,1",
                 "2,2,1,2",
                 "3,3,1,1",
@@ -54,7 +54,7 @@ public class ServicesTestDataHelper {
     }
 
     private static void CreateStudentProjectsTestFile(IIoService ioService, StudentProjectsDataSet dataSet) throws Exception {
-        DataSetFileTestHelper.createFile(ioService, dataSet.getTodayFileName(), StudentProjectItem.Header, new String[] {
+        DataSetFileTestHelper.createFile(ioService, dataSet.getTodayFileName(), StudentProjectItem.Header, new String[]{
                 "1,1,1",
                 "2,2,1",
                 "3,3,2",

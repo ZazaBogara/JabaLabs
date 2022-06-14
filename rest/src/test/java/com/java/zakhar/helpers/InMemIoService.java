@@ -3,7 +3,7 @@ package com.java.zakhar.helpers;
 import com.java.zakhar.IOService.IIoService;
 
 import java.io.*;
-import java.nio.file.Path;
+import java.nio.charset.Charset;
 import java.util.HashMap;
 
 public class InMemIoService implements IIoService {
@@ -18,20 +18,19 @@ public class InMemIoService implements IIoService {
     @Override
     public BufferedReader openFile(String fileName) throws FileNotFoundException {
         byte[] data = files.get(fileName);
-        if(data == null)
+        if (data == null)
             throw new FileNotFoundException(String.format("File %s is not found", fileName));
         ByteArrayInputStream input = new ByteArrayInputStream(data);
-        return new BufferedReader(new InputStreamReader(input));
+        return new BufferedReader(new InputStreamReader(input, Charset.defaultCharset()));
     }
 
     @Override
-    public PrintWriter createFile(String fileName)  {
+    public PrintWriter createFile(String fileName) {
         ByteArrayOutputStream output = new MyByteArrayOutputStream(files, fileName);
-        return new PrintWriter(output);
+        return new PrintWriter(output, false, Charset.defaultCharset());
     }
 
-    private static class MyByteArrayOutputStream extends ByteArrayOutputStream
-    {
+    private static class MyByteArrayOutputStream extends ByteArrayOutputStream {
         final private HashMap<String, byte[]> files;
         final private String fileName;
 
@@ -41,8 +40,7 @@ public class InMemIoService implements IIoService {
         }
 
         @Override
-        public void close()
-        {
+        public void close() {
             byte[] data = toByteArray();
             files.put(fileName, data);
 

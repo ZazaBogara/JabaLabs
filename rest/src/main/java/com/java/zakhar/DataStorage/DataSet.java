@@ -2,7 +2,9 @@ package com.java.zakhar.DataStorage;
 
 import com.java.zakhar.IOService.IIoService;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -20,8 +22,7 @@ public abstract class DataSet<T extends DataItem> {
         this.ioService = ioService;
     }
 
-    public String getTodayFileName()
-    {
+    public String getTodayFileName() {
         String currentDateStr = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
         fileName = String.format("%s-%s.csv", entityName, currentDateStr);
         return fileName;
@@ -61,13 +62,11 @@ public abstract class DataSet<T extends DataItem> {
             fileName = getTodayFileName();
         }
 
-        try(PrintWriter writer = ioService.createFile(fileName))
-        {
+        try (PrintWriter writer = ioService.createFile(fileName)) {
             String header = createItem().getCSVHeader();
             writer.println(header);
 
-            for(T item : getItems())
-            {
+            for (T item : getItems()) {
                 String s = item.toCSVString();
                 writer.println(s);
             }

@@ -7,12 +7,13 @@ import lombok.Setter;
 
 import java.util.List;
 
-@Data @AllArgsConstructor
+@Data
+@AllArgsConstructor
 public class Equipment {
 
     private int ID;
     @Setter(AccessLevel.PRIVATE)
-    private  String name;
+    private String name;
     @Setter(AccessLevel.PRIVATE)
     private float price;
     @Setter(AccessLevel.PRIVATE)

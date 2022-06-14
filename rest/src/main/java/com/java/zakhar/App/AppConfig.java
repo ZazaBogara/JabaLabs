@@ -5,13 +5,16 @@ import com.java.zakhar.DataStorage.IDataStorage;
 import com.java.zakhar.IOService.FileSystemIoService;
 import com.java.zakhar.IOService.IIoService;
 import com.java.zakhar.Services.*;
-import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import java.nio.file.FileSystemException;
 
 @Configuration
 public class AppConfig {
 
     @Bean
-    IIoService getIOService() {
+    IIoService getIoService() throws FileSystemException {
         String folderPath = "D:\\KursData";
         FileSystemIoService ioService = new FileSystemIoService(folderPath);
         ioService.ensureFolderExist();

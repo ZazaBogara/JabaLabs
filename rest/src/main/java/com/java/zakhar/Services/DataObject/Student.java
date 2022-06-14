@@ -7,7 +7,8 @@ import lombok.Setter;
 
 import java.util.List;
 
-@Data @AllArgsConstructor
+@Data
+@AllArgsConstructor
 public class Student {
     private int ID;
     @Setter(AccessLevel.PRIVATE)

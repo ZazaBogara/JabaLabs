@@ -9,7 +9,6 @@ import com.java.zakhar.Services.DataObject.EquipmentProject;
 import com.java.zakhar.helpers.DataSetFileTestHelper;
 import com.java.zakhar.helpers.InMemIoService;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,15 +18,13 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class EquipmentTests {
 
-    void assertEquipmentEquals(Equipment expected, Equipment actual)
-    {
+    void assertEquipmentEquals(Equipment expected, Equipment actual) {
         assertEquals(expected.getName(), actual.getName());
         assertEquals(expected.getPrice(), actual.getPrice());
         assertEquals(expected.getTotalAmount(), actual.getTotalAmount());
 
         assertEquals(expected.getProjects().size(), actual.getProjects().size());
-        for(int i=0; i<expected.getProjects().size(); i++)
-        {
+        for (int i = 0; i < expected.getProjects().size(); i++) {
             assertEquals(expected.getProjects().get(i).getProjectID(), actual.getProjects().get(i).getProjectID());
             assertEquals(expected.getProjects().get(i).getProjectName(), actual.getProjects().get(i).getProjectName());
             assertEquals(expected.getProjects().get(i).getAmount(), actual.getProjects().get(i).getAmount());
@@ -103,13 +100,13 @@ public class EquipmentTests {
 
         service.deleteEquipment(1);
 
-        DataSetFileTestHelper.assertFileContentIs(ioService, dataStorage.getEquipments().getTodayFileName(), new String[] {
+        DataSetFileTestHelper.assertFileContentIs(ioService, dataStorage.getEquipments().getTodayFileName(), new String[]{
                 EquipmentItem.Header,
                 "2,Eq2,50.000000,2",
                 "3,Eq3,3.000000,8"
         });
 
-        DataSetFileTestHelper.assertFileContentIs(ioService, dataStorage.getProjectEquipments().getTodayFileName(), new String[] {
+        DataSetFileTestHelper.assertFileContentIs(ioService, dataStorage.getProjectEquipments().getTodayFileName(), new String[]{
                 ProjectEquipmentItem.Header,
                 "4,2,2,1",
                 "5,3,2,2",

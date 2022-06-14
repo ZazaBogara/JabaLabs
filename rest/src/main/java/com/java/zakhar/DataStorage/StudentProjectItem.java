@@ -1,8 +1,11 @@
 package com.java.zakhar.DataStorage;
+
 import lombok.*;
 
-@Data @NoArgsConstructor @EqualsAndHashCode(callSuper = true)
-public class StudentProjectItem extends DataItem{
+@Data
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
+public class StudentProjectItem extends DataItem {
     public static final String Header = "ID,ProjectID,StudentID";
 
     @Setter(AccessLevel.PROTECTED)
@@ -11,22 +14,22 @@ public class StudentProjectItem extends DataItem{
     @Setter(AccessLevel.PROTECTED)
     private int projectID;
 
-    public StudentProjectItem(int ID, int studentID, int projectID)
-    {
+    public StudentProjectItem(int ID, int studentID, int projectID) {
         super(ID);
         setProjectID(projectID);
         setStudentID(studentID);
     }
 
     @Override
-    public String getCSVHeader()
-    {
+    public String getCSVHeader() {
         return Header;
     }
+
     @Override
     public String toCSVString() {
         return String.format("%d,%d,%d", getId(), getProjectID(), getStudentID());
     }
+
     @Override
     public void fromCSVString(String s) throws Exception {
         String[] items = s.split(",");

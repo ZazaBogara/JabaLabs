@@ -2,15 +2,16 @@ package com.java.zakhar.DataStorage;
 
 import lombok.*;
 
-@Data @NoArgsConstructor @EqualsAndHashCode(callSuper = true)
-public class ProjectItem extends DataItem{
+@Data
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
+public class ProjectItem extends DataItem {
     public static final String Header = "ID,Name";
 
     @Setter(AccessLevel.PROTECTED)
     private String name;
 
-    public ProjectItem(int ID, String name)
-    {
+    public ProjectItem(int ID, String name) {
         super(ID);
         setName(name);
     }

@@ -2,8 +2,10 @@ package com.java.zakhar.DataStorage;
 
 import lombok.*;
 
-@Data @NoArgsConstructor @EqualsAndHashCode(callSuper = true)
-public class EquipmentItem extends DataItem{
+@Data
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
+public class EquipmentItem extends DataItem {
     public static final String Header = "ID,Name,Price,TotalAmount";
 
     @Setter(AccessLevel.PROTECTED)
@@ -15,8 +17,7 @@ public class EquipmentItem extends DataItem{
     @Setter(AccessLevel.PROTECTED)
     private int totalAmount;
 
-    public  EquipmentItem(int ID, String name, float price, int totalAmount)
-    {
+    public EquipmentItem(int ID, String name, float price, int totalAmount) {
         super(ID);
         setName(name);
         setPrice(price);
@@ -24,14 +25,12 @@ public class EquipmentItem extends DataItem{
     }
 
     @Override
-    public String getCSVHeader()
-    {
+    public String getCSVHeader() {
         return Header;
     }
 
     @Override
-    public String toCSVString()
-    {
+    public String toCSVString() {
         return String.format("%d,%s,%f,%d", getId(), getName(), getPrice(), getTotalAmount());
     }
 

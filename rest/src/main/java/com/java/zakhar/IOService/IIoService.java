@@ -7,6 +7,8 @@ import java.io.PrintWriter;
 
 public interface IIoService {
     String[] listFiles();
-    BufferedReader openFile(String fileName) throws FileNotFoundException;
+
+    BufferedReader openFile(String fileName) throws IOException;
+
     PrintWriter createFile(String fileName) throws IOException;
 }

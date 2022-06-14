@@ -31,18 +31,22 @@ public class DataStorage implements IDataStorage {
     public EquipmentsDataSet getEquipments() {
         return equipments;
     }
+
     @Override
     public ProjectsDataSet getProjects() {
         return projects;
     }
+
     @Override
     public StudentsDataSet getStudents() {
         return students;
     }
+
     @Override
     public ProjectEquipmentsDataSet getProjectEquipments() {
         return projectEquipments;
     }
+
     @Override
     public StudentProjectsDataSet getStudentProjects() {
         return studentProjects;

@@ -2,14 +2,13 @@ package com.java.zakhar.Services;
 
 import com.java.zakhar.DataStorage.EquipmentItem;
 import com.java.zakhar.DataStorage.IDataStorage;
-import com.java.zakhar.DataStorage.ProjectEquipmentItem;
 import com.java.zakhar.DataStorage.StudentProjectItem;
 import com.java.zakhar.IOService.IIoService;
-import com.java.zakhar.Services.DataObject.*;
+import com.java.zakhar.Services.DataObject.Student;
+import com.java.zakhar.Services.DataObject.StudentProject;
 import com.java.zakhar.helpers.DataSetFileTestHelper;
 import com.java.zakhar.helpers.InMemIoService;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,15 +18,13 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class StudentTests {
 
-    void assertStudentEquals(Student expected, Student actual)
-    {
+    void assertStudentEquals(Student expected, Student actual) {
         assertEquals(expected.getCourse(), actual.getCourse());
         assertEquals(expected.getFirstName(), actual.getFirstName());
         assertEquals(expected.getLastName(), actual.getLastName());
 
         assertEquals(expected.getProjects().size(), actual.getProjects().size());
-        for(int i=0; i<expected.getProjects().size(); i++)
-        {
+        for (int i = 0; i < expected.getProjects().size(); i++) {
             assertEquals(expected.getProjects().get(i).getProjectID(), actual.getProjects().get(i).getProjectID());
             assertEquals(expected.getProjects().get(i).getProjectName(), actual.getProjects().get(i).getProjectName());
         }
@@ -101,14 +98,14 @@ public class StudentTests {
 
         service.deleteStudent(1);
 
-        DataSetFileTestHelper.assertFileContentIs(ioService, dataStorage.getEquipments().getTodayFileName(), new String[] {
+        DataSetFileTestHelper.assertFileContentIs(ioService, dataStorage.getEquipments().getTodayFileName(), new String[]{
                 EquipmentItem.Header,
                 "1,Eq1,12,10",
                 "2,Eq2,50,2",
                 "3,Eq3,3,8"
         });
 
-        DataSetFileTestHelper.assertFileContentIs(ioService, dataStorage.getStudentProjects().getTodayFileName(), new String[] {
+        DataSetFileTestHelper.assertFileContentIs(ioService, dataStorage.getStudentProjects().getTodayFileName(), new String[]{
                 StudentProjectItem.Header,
                 "3,3,2"
         });

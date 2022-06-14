@@ -3,7 +3,6 @@ package com.java.zakhar.Controllers;
 import com.java.zakhar.Services.DataObject.Equipment;
 import com.java.zakhar.Services.IEquipmentService;
 import com.java.zakhar.Services.InvalidEntityIdException;
-import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

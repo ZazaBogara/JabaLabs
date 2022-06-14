@@ -13,7 +13,7 @@ public class StudentProjectTests {
         InMemIoService ioService = new InMemIoService();
         // Create item
         StudentProjectsDataSet studentProjects = new StudentProjectsDataSet(ioService);
-        StudentProjectItem studentProject = new StudentProjectItem(1,1,1);
+        StudentProjectItem studentProject = new StudentProjectItem(1, 1, 1);
         studentProjects.setItem(studentProject);
         studentProjects.save();
 
@@ -68,7 +68,7 @@ public class StudentProjectTests {
             // Create item
             StudentProjectsDataSet studentProjects = new StudentProjectsDataSet(ioService);
             id = studentProjects.getNewID();
-            studentProject1 = new StudentProjectItem(id,1,1);
+            studentProject1 = new StudentProjectItem(id, 1, 1);
             studentProjects.setItem(studentProject1);
             studentProjects.save();
         }

@@ -1,7 +1,9 @@
 package com.java.zakhar.Services;
 
 import com.java.zakhar.DataStorage.*;
-import com.java.zakhar.Services.DataObject.*;
+import com.java.zakhar.Services.DataObject.Project;
+import com.java.zakhar.Services.DataObject.ProjectEquipment;
+import com.java.zakhar.Services.DataObject.ProjectStudent;
 import lombok.AllArgsConstructor;
 
 import java.io.IOException;
@@ -11,16 +13,14 @@ import java.util.LinkedList;
 import java.util.List;
 
 @AllArgsConstructor
-public class ProjectService implements IProjectService{
+public class ProjectService implements IProjectService {
     IDataStorage dataStorage;
 
 
-    private List<ProjectEquipment> loadProjectEquipments(int projectID)
-    {
+    private List<ProjectEquipment> loadProjectEquipments(int projectID) {
         List<ProjectEquipment> projectEquipments = new LinkedList<>();
-        for (ProjectEquipmentItem projectEquipmentItem: dataStorage.getProjectEquipments().getItems()) {
-            if (projectEquipmentItem.getProjectID() == projectID)
-            {
+        for (ProjectEquipmentItem projectEquipmentItem : dataStorage.getProjectEquipments().getItems()) {
+            if (projectEquipmentItem.getProjectID() == projectID) {
                 EquipmentItem equipmentItem = dataStorage.getEquipments().getItem(projectEquipmentItem.getEquipmentID());
                 ProjectEquipment projectEquipment = new ProjectEquipment(projectEquipmentItem.getId(), equipmentItem.getId(), equipmentItem.getName(), projectEquipmentItem.getAmount());
                 projectEquipments.add(projectEquipment);
@@ -29,12 +29,10 @@ public class ProjectService implements IProjectService{
         return projectEquipments;
     }
 
-    private List<ProjectStudent> loadProjectStudents(int projectID)
-    {
+    private List<ProjectStudent> loadProjectStudents(int projectID) {
         List<ProjectStudent> projectStudents = new LinkedList<>();
-        for (StudentProjectItem studentProjectItem: dataStorage.getStudentProjects().getItems()){
-            if (studentProjectItem.getProjectID() == projectID)
-            {
+        for (StudentProjectItem studentProjectItem : dataStorage.getStudentProjects().getItems()) {
+            if (studentProjectItem.getProjectID() == projectID) {
                 StudentItem studentItem = dataStorage.getStudents().getItem(studentProjectItem.getStudentID());
                 ProjectStudent projectStudent = new ProjectStudent(studentProjectItem.getId(), studentItem.getId(), studentItem.getFirstName(), studentItem.getLastName(), studentItem.getCourse());
                 projectStudents.add(projectStudent);
@@ -43,8 +41,7 @@ public class ProjectService implements IProjectService{
         return projectStudents;
     }
 
-    private Project loadProject(ProjectItem projectItem)
-    {
+    private Project loadProject(ProjectItem projectItem) {
         List<ProjectEquipment> projectEquipments = loadProjectEquipments(projectItem.getId());
         List<ProjectStudent> projectStudents = loadProjectStudents(projectItem.getId());
         return new Project(projectItem.getId(), projectItem.getName(), projectEquipments, projectStudents);
@@ -52,7 +49,7 @@ public class ProjectService implements IProjectService{
 
     public List<Project> getProjects() {
         List<Project> result = new LinkedList<>();
-        for (ProjectItem projectItem: dataStorage.getProjects().getItems()) {
+        for (ProjectItem projectItem : dataStorage.getProjects().getItems()) {
             Project project = loadProject(projectItem);
             result.add(project);
         }
@@ -70,32 +67,28 @@ public class ProjectService implements IProjectService{
     private void updateProjectEquipments(int projectID, List<ProjectEquipment> equipments) throws IOException {
         // get existing projects
         HashMap<Integer, ProjectEquipmentItem> existingProjects = new HashMap<>();
-        for (ProjectEquipmentItem projectEquipmentItem: dataStorage.getProjectEquipments().getItems()) {
+        for (ProjectEquipmentItem projectEquipmentItem : dataStorage.getProjectEquipments().getItems()) {
             if (projectEquipmentItem.getProjectID() == projectID) {
                 existingProjects.put(projectEquipmentItem.getId(), projectEquipmentItem);
             }
         }
         boolean wasModified = false;
         // update projects
-        for (ProjectEquipment equip: equipments) {
+        for (ProjectEquipment equip : equipments) {
             ProjectEquipmentItem existingItem = existingProjects.get(equip.getID());
-            if(existingItem != null) {
+            if (existingItem != null) {
                 existingProjects.remove(equip.getID());
-                if (existingItem.getEquipmentID() != equip.getEquipmentID() || existingItem.getAmount() != equip.getAmount())
-                {
+                if (existingItem.getEquipmentID() != equip.getEquipmentID() || existingItem.getAmount() != equip.getAmount()) {
                     dataStorage.getProjectEquipments().setItem(new ProjectEquipmentItem(existingItem.getId(), projectID, equip.getEquipmentID(), equip.getAmount()));
                     wasModified = true;
                 }
-            }
-            else
-            {
+            } else {
                 dataStorage.getProjectEquipments().setItem(new ProjectEquipmentItem(dataStorage.getProjectEquipments().getNewID(), projectID, equip.getEquipmentID(), equip.getAmount()));
                 wasModified = true;
             }
         }
         // remove unused
-        for(ProjectEquipmentItem projectEquipmentItem: existingProjects.values())
-        {
+        for (ProjectEquipmentItem projectEquipmentItem : existingProjects.values()) {
             dataStorage.getProjectEquipments().deleteItem(projectEquipmentItem.getId());
             wasModified = true;
         }
@@ -107,32 +100,28 @@ public class ProjectService implements IProjectService{
     private void updateProjectStudents(int projectID, List<ProjectStudent> students) throws IOException {
         // get existing projects
         HashMap<Integer, StudentProjectItem> existingProjects = new HashMap<>();
-        for (StudentProjectItem studentProjectItem: dataStorage.getStudentProjects().getItems()) {
+        for (StudentProjectItem studentProjectItem : dataStorage.getStudentProjects().getItems()) {
             if (studentProjectItem.getProjectID() == projectID) {
                 existingProjects.put(studentProjectItem.getId(), studentProjectItem);
             }
         }
         boolean wasModified = false;
         // update projects
-        for (ProjectStudent stud: students) {
+        for (ProjectStudent stud : students) {
             StudentProjectItem existingItem = existingProjects.get(stud.getID());
-            if(existingItem != null) {
+            if (existingItem != null) {
                 existingProjects.remove(stud.getID());
-                if (existingItem.getStudentID() != stud.getStudentID())
-                {
-                    dataStorage.getStudentProjects().setItem(new StudentProjectItem(dataStorage.getStudentProjects().getNewID(),  stud.getStudentID(), projectID));
+                if (existingItem.getStudentID() != stud.getStudentID()) {
+                    dataStorage.getStudentProjects().setItem(new StudentProjectItem(dataStorage.getStudentProjects().getNewID(), stud.getStudentID(), projectID));
                     wasModified = true;
                 }
-            }
-            else
-            {
+            } else {
                 dataStorage.getStudentProjects().setItem(new StudentProjectItem(dataStorage.getStudentProjects().getNewID(), stud.getStudentID(), projectID));
                 wasModified = true;
             }
         }
         // remove unused
-        for(StudentProjectItem studentProjectItem: existingProjects.values())
-        {
+        for (StudentProjectItem studentProjectItem : existingProjects.values()) {
             dataStorage.getStudentProjects().deleteItem(studentProjectItem.getId());
             wasModified = true;
         }

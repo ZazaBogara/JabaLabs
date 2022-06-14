@@ -16,6 +16,8 @@ abstract class DataItem {
     }
 
     public abstract String getCSVHeader();
+
     public abstract String toCSVString();
+
     public abstract void fromCSVString(String s) throws Exception;
 }

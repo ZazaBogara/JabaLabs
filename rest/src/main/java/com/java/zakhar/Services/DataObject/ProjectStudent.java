@@ -3,7 +3,8 @@ package com.java.zakhar.Services.DataObject;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-@Data @AllArgsConstructor
+@Data
+@AllArgsConstructor
 public class ProjectStudent {
     private int ID;
     private int studentID;
