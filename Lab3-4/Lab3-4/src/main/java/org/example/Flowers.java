@@ -21,4 +21,15 @@ public class Flowers extends Plants {
 		ownColor = color.toString();
 		return "\n\nName: " + name + "\nAge: " + age + "\nCost: " + cost + "\nAmount: "  + amount  + "\ncan be grown in " + grown + "\nColor: " + ownColor; 
 	}
+	@Override
+	public String getHeaders()
+	{
+		return super.getHeaders()+",color";
+	}
+
+	@Override
+	public String toCSV()
+	{
+		return super.toCSV()+","+color.toString();
+	}
 }

@@ -1,0 +1,6 @@
+Name,Age,Cost,Amount,CanBeGrown,Spikes
+bush,3,500.0,4,Outumn,true
+Name,Age,Cost,Amount,CanBeGrown,color
+flower,2,200.0,30,Summer,Green
+Name,Age,Cost,Amount,CanBeGrown,Height
+oak,1,100.0,1,Spring,56.0

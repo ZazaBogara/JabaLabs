@@ -15,4 +15,16 @@ public class Tree extends Plants {
 		grown = canBeGrown.toString();
 		return "\n\nName: " + name + "\nAge: " + age + "\nCost: " + cost + "\nAmount: " + amount  + "\ncan be grown in " + grown + "\nheight:" + height; 
 	}
+
+	@Override
+	public String getHeaders()
+	{
+		return super.getHeaders()+",Height";
+	}
+
+	@Override
+	public String toCSV()
+	{
+		return super.toCSV()+","+height;
+	}
 }
