@@ -18,5 +18,7 @@ public class main
 		myShop.sortDown("cost");
 		System.out.println(myShop.catallog.get(0));
 		System.out.println(myShop.catallog.get(1));
+
+
 	}
 }
