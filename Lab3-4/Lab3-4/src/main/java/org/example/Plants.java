@@ -27,4 +27,13 @@ public class Plants
 		grown = canBeGrown.toString();
 		return "\n\nName: " + name + "\nAge: " + age + "\nCost: " + cost + "\nAmount: " + amount + "\ncan be grown in " + grown; 
 	}
+
+	public String getHeaders()
+	{
+		return "Name,Age,Cost,Amount,CanBeGrown";
+	}
+	public String toCSV()
+	{
+		return (name+","+age+","+cost+","+amount+","+canBeGrown.toString());
+	}
 }

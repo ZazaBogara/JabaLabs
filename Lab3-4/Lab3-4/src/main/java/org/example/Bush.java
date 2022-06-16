@@ -16,4 +16,16 @@ public class Bush extends Plants {
 		return "\n\nName: " + name + "\nAge: " + age + "\nCost: " + cost + "\nAmount: " + amount  + "\ncan be grown in " + grown + "\nIs spikes:" + (spikes?"Yes":"No");
 		 
 	}
+
+	@Override
+	public String getHeaders()
+	{
+		return super.getHeaders()+",Spikes";
+	}
+
+	@Override
+	public String toCSV()
+	{
+		return super.toCSV()+","+spikes;
+	}
 }
