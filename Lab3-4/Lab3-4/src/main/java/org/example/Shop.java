@@ -29,10 +29,8 @@ public class Shop
 	public void searchCanBeGrown(String search)
 	{
 		Plants.WhenGrow searchWhen = Plants.WhenGrow.valueOf(search);
-		for(int i=0;i<catallog.size();i++)
-		{
-			if(catallog.get(i).canBeGrown==searchWhen) 
-			{
+		for(int i=0;i<catallog.size();i++) {
+			if (catallog.get(i).canBeGrown == searchWhen) {
 				System.out.println(catallog.get(i));
 			}
 		}
